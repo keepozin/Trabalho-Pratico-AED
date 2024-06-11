@@ -9,15 +9,15 @@ namespace ConsoleApp1
     public class Curso
     {
         public int codigo;
-        public string nome;
+        public string nomeCurso;
         public int vagas;
         public List<Candidato> selecionados;
         public Fila filaEspera;
 
-        public Curso(int codigo, string nome, int vagas)
+        public Curso(int codigo, string nomeCurso, int vagas)
         {
             this.codigo = codigo;
-            this.nome = nome;
+            this.nomeCurso = nomeCurso;
             this.vagas = vagas;
             selecionados = new List<Candidato>();
             filaEspera = new Fila(10);

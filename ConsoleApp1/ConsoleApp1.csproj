@@ -46,6 +46,7 @@
     <Compile Include="Candidato.cs" />
     <Compile Include="Curso.cs" />
     <Compile Include="Fila.cs" />
+    <Compile Include="Ordenacao.cs" />
     <Compile Include="ProcessoSeletivo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

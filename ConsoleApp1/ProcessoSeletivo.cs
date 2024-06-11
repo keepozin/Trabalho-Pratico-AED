@@ -9,7 +9,7 @@ namespace ConsoleApp1
 {
     public class ProcessoSeletivo
     {
-        private List<Candidato> candidatos;
+        public List<Candidato> candidatos;
         private Dictionary<int, Curso> cursos;
 
         public ProcessoSeletivo()
@@ -28,7 +28,7 @@ namespace ConsoleApp1
             cursos[codigo] = new Curso(codigo, nome, vagas);
         }
 
-        private int CompararCandidatos(Candidato candidatoA, Candidato candidatoB)
+        public static int CompararCandidatos(Candidato candidatoA, Candidato candidatoB)
         {
             double mediaAlunoA = candidatoA.Media();
             double mediaAlunoB = candidatoB.Media();
