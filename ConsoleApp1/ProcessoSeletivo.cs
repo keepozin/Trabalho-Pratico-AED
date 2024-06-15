@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace ConsoleApp1
 {
     public class ProcessoSeletivo
     {
-        public List<Candidato> candidatos;
+        private List<Candidato> candidatos;
         private Dictionary<int, Curso> cursos;
-
         public ProcessoSeletivo()
         {
             candidatos = new List<Candidato>();
@@ -28,73 +24,74 @@ namespace ConsoleApp1
             cursos[codigo] = new Curso(codigo, nome, vagas);
         }
 
-        public static int CompararCandidatos(Candidato candidatoA, Candidato candidatoB)
+        public void ProcessarSelecao()
         {
-            double mediaAlunoA = candidatoA.Media();
-            double mediaAlunoB = candidatoB.Media();
+            Ordenacao.Quicksort(candidatos, 0, candidatos.Count - 1);
 
-            if (mediaAlunoA > mediaAlunoB)
+            foreach (var candidato in candidatos)
             {
-                return -1;
-            }
-            else if (mediaAlunoA < mediaAlunoB)
-            {
-                return 1;
-            }
-            else
-            {
-                double notaRedacaoA = candidatoA.NotaRedacao;
-                double notaRedacaoB = candidatoB.NotaRedacao;
+                int primeiraOpcao = candidato.PrimeiraOpcao;
+                int segundaOpcao = candidato.SegundaOpcao;
 
-                if (notaRedacaoA > notaRedacaoB)
+                if (cursos.ContainsKey(primeiraOpcao))
                 {
-                    return -1;
-                }
-                else if (notaRedacaoA < notaRedacaoB)
-                {
-                    return 1;
-                }
-                else
-                {
-                    double notaMatematicaA = candidatoA.NotaMatematica;
-                    double notaMatematicaB = candidatoB.NotaMatematica;
+                    Curso cursoPrimeiraOpcao = cursos[primeiraOpcao];
 
-                    if (notaMatematicaA > notaMatematicaB)
+                    if (cursoPrimeiraOpcao.Selecionados.Count < cursoPrimeiraOpcao.Vagas)
                     {
-                        return -1;
+                        cursoPrimeiraOpcao.AdicionarSelecionado(candidato);
                     }
-                    else if (notaMatematicaA < notaMatematicaB)
+                    else if (cursos.ContainsKey(segundaOpcao))
                     {
-                        return 1;
-                    }
-                    else
-                    {
-                        double notaLinguagensA = candidatoA.NotaLinguagens;
-                        double notaLinguagensB = candidatoB.NotaLinguagens;
+                        Curso cursoSegundaOpcao = cursos[segundaOpcao];
 
-                        if (notaLinguagensA > notaLinguagensB)
+                        if (cursoSegundaOpcao.Selecionados.Count < cursoSegundaOpcao.Vagas)
                         {
-                            return -1;
-                        }
-                        else if (notaLinguagensA < notaLinguagensB)
-                        {
-                            return 1;
+                            cursoSegundaOpcao.AdicionarSelecionado(candidato);
+                            cursoSegundaOpcao.AdicionarFilaEspera(candidato);
                         }
                         else
                         {
-                            return 0;
+                            cursoPrimeiraOpcao.AdicionarFilaEspera(candidato);
+                            cursoSegundaOpcao.AdicionarFilaEspera(candidato);
                         }
+                    }
+                    else
+                    {
+                        cursoPrimeiraOpcao.AdicionarFilaEspera(candidato);
                     }
                 }
             }
         }
-        public void ProcessarSelecao()
-        {
 
-        }
         public void GerarRelatorio(string caminhoArquivo)
         {
-            
+            using (StreamWriter writer = new StreamWriter(caminhoArquivo))
+            {
+                foreach (var curso in cursos.Values)
+                {
+                    writer.WriteLine($"{curso.NomeCurso} {curso.NotaCorte():F2}");
+                    writer.WriteLine("Selecionados");
+
+                    Ordenacao.Quicksort(curso.Selecionados, 0, curso.Selecionados.Count - 1);
+
+                    foreach (var candidato in curso.Selecionados)
+                    {
+                        writer.WriteLine($"{candidato.Nome} {candidato.Media():F2} {candidato.NotaRedacao} {candidato.NotaMatematica} {candidato.NotaLinguagens}");
+                    }
+
+                    writer.WriteLine("Fila de Espera");
+
+                    List<Candidato> candidatosFila = curso.FilaEspera.ObterLista();
+
+                    foreach (var candidato in candidatosFila)
+                    {
+                        writer.WriteLine($"{candidato.Nome} {candidato.Media():F2} {candidato.NotaRedacao} {candidato.NotaMatematica} {candidato.NotaLinguagens}");
+                    }
+
+                    writer.WriteLine();
+                }
+            }
         }
     }
 }

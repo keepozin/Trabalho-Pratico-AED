@@ -1,46 +1,101 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ConsoleApp1
 {
     public class Ordenacao
     {
-        public static void Quicksort(List<Candidato> candidatos, int left, int right)
+        public static void Quicksort(List<Candidato> candidatos, int esquerda, int direita)
         {
-            if (left < right)
+            if (esquerda < direita)
             {
-                int pivot = Particao(candidatos, left, right);
-                Quicksort(candidatos, left, pivot - 1);
-                Quicksort(candidatos, pivot + 1, right);
+                int indiceParticao = Particao(candidatos, esquerda, direita);
             }
         }
-        private static int Particao(List<Candidato> candidatos, int left, int right)
-        {
-            Candidato pivot = candidatos[right];
-            int i = left - 1;
 
-            for (int j = left; j < right; j++)
+        private static int Particao(List<Candidato> candidatos, int esquerda, int direita)
+        {
+            Candidato pivo = candidatos[direita];
+            int i = esquerda - 1;
+
+            for (int j = esquerda; j < direita; j++)
             {
-                if (ProcessoSeletivo.CompararCandidatos(candidatos[j], pivot) < 0)
+                if (CompararCandidatos(candidatos[j], pivo) <= 0)
                 {
                     i++;
-                    Swap(candidatos, i, j);
+                    Trocar(candidatos, i, j);
                 }
             }
 
-            Swap(candidatos, i + 1, right);
+            Trocar(candidatos, i + 1, direita);
             return i + 1;
         }
 
-        private static void Swap(List<Candidato> candidatos, int i, int j)
+        private static void Trocar(List<Candidato> candidatos, int i, int j)
         {
             Candidato temp = candidatos[i];
             candidatos[i] = candidatos[j];
             candidatos[j] = temp;
+        }
+
+        public static int CompararCandidatos(Candidato candidatoA, Candidato candidatoB)
+        {
+            double mediaAlunoA = candidatoA.Media();
+            double mediaAlunoB = candidatoB.Media();
+
+            if (mediaAlunoA > mediaAlunoB)
+            {
+                return -1;
+            }
+            else if (mediaAlunoA < mediaAlunoB)
+            {
+                return 1;
+            }
+            else
+            {
+                double notaRedacaoA = candidatoA.NotaRedacao;
+                double notaRedacaoB = candidatoB.NotaRedacao;
+
+                if (notaRedacaoA > notaRedacaoB)
+                {
+                    return -1;
+                }
+                else if (notaRedacaoA < notaRedacaoB)
+                {
+                    return 1;
+                }
+                else
+                {
+                    double notaMatematicaA = candidatoA.NotaMatematica;
+                    double notaMatematicaB = candidatoB.NotaMatematica;
+
+                    if (notaMatematicaA > notaMatematicaB)
+                    {
+                        return -1;
+                    }
+                    else if (notaMatematicaA < notaMatematicaB)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        double notaLinguagensA = candidatoA.NotaLinguagens;
+                        double notaLinguagensB = candidatoB.NotaLinguagens;
+
+                        if (notaLinguagensA > notaLinguagensB)
+                        {
+                            return -1;
+                        }
+                        else if (notaLinguagensA < notaLinguagensB)
+                        {
+                            return 1;
+                        }
+                        else
+                        {
+                            return 0;
+                        }
+                    }
+                }
+            }
         }
     }
 }

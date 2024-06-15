@@ -1,78 +1,77 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
     public class Fila
     {
-        private Candidato[] array;
+        private Candidato[] candidatos;
         private int primeiro;
         private int ultimo;
         private int tamanho;
-        private int contador;
-
-        public Fila(int tamanho)
+        public Fila(int tamanhoMaximo)
         {
-            this.tamanho = tamanho;
-            array = new Candidato[tamanho + 1];
-            primeiro = ultimo = 0;
-            contador = 0;
+            candidatos = new Candidato[tamanhoMaximo];
+            primeiro = 0;
+            ultimo = -1;
+            tamanho = tamanhoMaximo;
         }
 
-        public void Inserir(Candidato x)
+        public void Inserir(Candidato candidato)
         {
-            if (((ultimo + 1) % array.Length) == primeiro)
+            if (ultimo < tamanho - 1)
             {
-                return;
-            }
-            array[ultimo] = x;
-            ultimo = (ultimo + 1) % array.Length;
-            contador++;
-        }
+                int posicaoInsercao = ultimo + 1;
 
-        public Candidato Remover()
-        {
-            if (primeiro == ultimo)
-            {
-                throw new Exception("Erro: A fila está vazia");
-            }
-            Candidato resp = array[primeiro];
-            primeiro = (primeiro + 1) % array.Length;
-            contador--;
-            return resp;
-        }
-
-        public void Mostrar()
-        {
-            int i = primeiro;
-            Console.WriteLine("Fila: ");
-            while (i != ultimo)
-            {
-                Console.WriteLine(array[i].Nome);
-                i = (i + 1) % array.Length;
-            }
-            Console.WriteLine();
-        }
-
-        public bool Pesquisar(string nome)
-        {
-            bool achou = false;
-            for (int i = primeiro; i != ultimo && !achou; i = ((i + 1) % array.Length))
-            {
-                if (array[i].Nome == nome)
+                while (posicaoInsercao > 0 && candidato.Media() > candidatos[posicaoInsercao - 1].Media())
                 {
-                    achou = true;
+                    candidatos[posicaoInsercao] = candidatos[posicaoInsercao - 1];
+                    posicaoInsercao--;
                 }
+
+                candidatos[posicaoInsercao] = candidato;
+                ultimo++;
             }
-            return achou;
+            else if (candidato.Media() > candidatos[primeiro].Media())
+            {
+                for (int i = primeiro; i < ultimo; i++)
+                {
+                    candidatos[i] = candidatos[i + 1];
+                }
+
+                candidatos[ultimo] = candidato;
+            }
         }
 
-        public int Contagem()
+        public int Tamanho
         {
-            return contador;
+            get { return tamanho; }
+        }
+
+        public int Primeiro
+        {
+            get { return primeiro; }
+        }
+
+        public int Ultimo
+        {
+            get { return ultimo; }
+        }
+
+        public List<Candidato> ObterLista()
+        {
+            List<Candidato> lista = new List<Candidato>();
+            for (int i = primeiro; i <= ultimo; i++)
+            {
+                lista.Add(candidatos[i]);
+            }
+            return lista;
+        }
+
+        public void Limpar()
+        {
+            primeiro = 0;
+            ultimo = -1;
         }
     }
 }

@@ -1,0 +1,77 @@
+Matemática 716,67
+Selecionados
+Pato Donald 733,33 700 700 800
+Dona Florinda 716,67 700 750 700
+Fila de Espera
+Ana 816,67 800 850 800
+Gabriela 800,00 750 800 850
+Patrícia 800,00 750 850 800
+Fernanda 750,00 700 800 750
+Ricardo 733,33 650 750 800
+Dona Florinda 716,67 700 750 700
+Mariana 716,67 700 750 700
+Fábio 716,67 700 750 700
+José 700,00 700 700 700
+Laura 700,00 700 700 700
+
+Física 700,00
+Selecionados
+Senhor Barriga 783,33 750 800 800
+Chiquinha 700,00 700 700 700
+Fila de Espera
+Rodrigo 833,33 800 900 800
+Camila 833,33 800 900 800
+Gabriela 800,00 750 800 850
+Roberto 800,00 750 850 800
+Guilherme 800,00 750 800 850
+Patrícia 800,00 750 850 800
+Maria 733,33 650 750 800
+Ricardo 733,33 650 750 800
+Juliana 733,33 650 750 800
+José 700,00 700 700 700
+
+Química 783,33
+Selecionados
+Deadpool 800,00 900 700 800
+Peter Parker 783,33 700 850 800
+Fila de Espera
+Ana 816,67 800 850 800
+Roberto 800,00 750 850 800
+Fernanda 750,00 700 800 750
+Marcos 750,00 700 800 750
+Carla 750,00 700 800 750
+Maria 733,33 650 750 800
+Juliana 733,33 650 750 800
+Mariana 716,67 700 750 700
+Fábio 716,67 700 750 700
+Laura 700,00 700 700 700
+
+Estatística 700,00
+Selecionados
+Chaves 800,00 750 800 850
+Professor Girafales 833,33 800 900 800
+Paulo 716,67 700 750 700
+Carlos 700,00 700 700 700
+Vanessa 700,00 700 700 700
+Fila de Espera
+Rodrigo 833,33 800 900 800
+Camila 833,33 800 900 800
+Chaves 800,00 750 800 850
+Guilherme 800,00 750 800 850
+Marcos 750,00 700 800 750
+Paulo 716,67 700 750 700
+Carlos 700,00 700 700 700
+Vanessa 700,00 700 700 700
+Felipe 700,00 700 700 700
+Bianca 700,00 700 700 700
+
+Religiao 700,00
+Selecionados
+Carlos 833,33 800 900 800
+Lucas 700,00 700 700 700
+Mickey Mouse 766,67 800 700 800
+Fila de Espera
+Mercantil 800,00 750 800 850
+Bianca 716,67 700 750 700
+Renata 716,67 700 750 700
+
