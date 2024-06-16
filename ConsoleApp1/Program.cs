@@ -7,8 +7,8 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            string caminhoEntrada = "C:\\Users\\jpcam\\OneDrive\\Área de Trabalho\\entrada.txt";
-            string caminhoSaida = "C:\\Users\\jpcam\\OneDrive\\Área de Trabalho\\saida.txt";
+            string caminhoEntrada = "C:\\Users\\Victor\\Downloads\\entrada.txt";
+            string caminhoSaida = "C:\\Users\\Victor\\Downloads\\saida.txt";
             ProcessoSeletivo processo = new ProcessoSeletivo();
 
             using (StreamReader reader = new StreamReader(caminhoEntrada))

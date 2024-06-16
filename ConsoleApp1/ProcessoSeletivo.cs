@@ -69,6 +69,7 @@ namespace ConsoleApp1
                 {
                     writer.WriteLine($"{curso.NomeCurso} {curso.NotaCorte():F2}");
                     writer.WriteLine("Selecionados");
+                    writer.WriteLine(" ");
 
                     Ordenacao.Quicksort(curso.Selecionados, 0, curso.Selecionados.Count - 1);
 
@@ -77,6 +78,7 @@ namespace ConsoleApp1
                         writer.WriteLine($"{candidato.Nome} {candidato.Media():F2} {candidato.NotaRedacao} {candidato.NotaMatematica} {candidato.NotaLinguagens}");
                     }
 
+                    writer.WriteLine(" ");
                     writer.WriteLine("Fila de Espera");
 
                     List<Candidato> candidatosFila = curso.FilaEspera.ObterLista();
