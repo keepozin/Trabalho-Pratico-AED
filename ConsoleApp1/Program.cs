@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Runtime.Remoting.Lifetime;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    //esse aqui
     class Program
     {
         static void Main(string[] args)
@@ -55,9 +46,6 @@ namespace ConsoleApp1
 
             processo.ProcessarSelecao();
             processo.GerarRelatorio(caminhoSaida);
-
-            Console.WriteLine("Processo seletivo concluído. Verifique o arquivo de saída para os resultados.");
-            Console.ReadLine();
         }
     }
 }
