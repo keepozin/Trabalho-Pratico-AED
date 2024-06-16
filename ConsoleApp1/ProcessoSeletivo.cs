@@ -8,6 +8,7 @@ namespace ConsoleApp1
     {
         private List<Candidato> candidatos;
         private Dictionary<int, Curso> cursos;
+
         public ProcessoSeletivo()
         {
             candidatos = new List<Candidato>();
@@ -33,36 +34,33 @@ namespace ConsoleApp1
                 int primeiraOpcao = candidato.PrimeiraOpcao;
                 int segundaOpcao = candidato.SegundaOpcao;
 
-                if (cursos.ContainsKey(primeiraOpcao))
+                if (cursos.ContainsKey(primeiraOpcao) && cursos[primeiraOpcao].Selecionados.Count < cursos[primeiraOpcao].Vagas)
                 {
-                    Curso cursoPrimeiraOpcao = cursos[primeiraOpcao];
-
-                    if (cursoPrimeiraOpcao.Selecionados.Count < cursoPrimeiraOpcao.Vagas)
+                    cursos[primeiraOpcao].AdicionarSelecionado(candidato);
+                }
+                else if (cursos.ContainsKey(segundaOpcao) && cursos[segundaOpcao].Selecionados.Count < cursos[segundaOpcao].Vagas)
+                {
+                    cursos[segundaOpcao].AdicionarSelecionado(candidato);
+                }
+                else
+                {
+                    if (cursos.ContainsKey(primeiraOpcao))
                     {
-                        cursoPrimeiraOpcao.AdicionarSelecionado(candidato);
+                        cursos[primeiraOpcao].AdicionarFilaEspera(candidato);
                     }
-                    else if (cursos.ContainsKey(segundaOpcao))
+                    if (cursos.ContainsKey(segundaOpcao))
                     {
-                        Curso cursoSegundaOpcao = cursos[segundaOpcao];
-
-                        if (cursoSegundaOpcao.Selecionados.Count < cursoSegundaOpcao.Vagas)
-                        {
-                            cursoSegundaOpcao.AdicionarSelecionado(candidato);
-                            cursoSegundaOpcao.AdicionarFilaEspera(candidato);
-                        }
-                        else
-                        {
-                            cursoPrimeiraOpcao.AdicionarFilaEspera(candidato);
-                            cursoSegundaOpcao.AdicionarFilaEspera(candidato);
-                        }
-                    }
-                    else
-                    {
-                        cursoPrimeiraOpcao.AdicionarFilaEspera(candidato);
+                        cursos[segundaOpcao].AdicionarFilaEspera(candidato);
                     }
                 }
             }
+
+            foreach (var curso in cursos.Values)
+            {
+                curso.OrdenarFilaEspera();
+            }
         }
+
 
         public void GerarRelatorio(string caminhoArquivo)
         {

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ConsoleApp1
+﻿namespace ConsoleApp1
 {
-    public class Candidato
+        public class Candidato
     {
         private string nome;
         private double notaRedacao;
@@ -14,6 +8,7 @@ namespace ConsoleApp1
         private double notaLinguagens;
         private int primeiraOpcao;
         private int segundaOpcao;
+
         public Candidato(string nome, double notaRedacao, double notaMatematica, double notaLinguagens, int primeiraOpcao, int segundaOpcao)
         {
             this.nome = nome;
@@ -26,7 +21,8 @@ namespace ConsoleApp1
 
         public double Media()
         {
-            return (notaRedacao + notaMatematica + notaLinguagens) / 3.0;
+            double media = (notaRedacao + notaMatematica + notaLinguagens) / 3.0;
+            return media;
         }
 
         public string Nome

@@ -9,6 +9,8 @@ namespace ConsoleApp1
             if (esquerda < direita)
             {
                 int indiceParticao = Particao(candidatos, esquerda, direita);
+                Quicksort(candidatos, esquerda, indiceParticao - 1);
+                Quicksort(candidatos, indiceParticao + 1, direita);
             }
         }
 

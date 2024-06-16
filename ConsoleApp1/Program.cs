@@ -11,12 +11,13 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
+    //esse aqui
     class Program
     {
         static void Main(string[] args)
         {
-            string caminhoEntrada = "C:\\Users\\jpcam\\OneDrive\\Área de Trabalho\\TrabPrat\\Trabalho-Pratico-AED\\ConsoleApp1\\entrada.txt";
-            string caminhoSaida = "C:\\Users\\jpcam\\OneDrive\\Área de Trabalho\\TrabPrat\\Trabalho-Pratico-AED\\ConsoleApp1\\saida.txt";
+            string caminhoEntrada = "C:\\Users\\jpcam\\OneDrive\\Área de Trabalho\\entrada.txt";
+            string caminhoSaida = "C:\\Users\\jpcam\\OneDrive\\Área de Trabalho\\saida.txt";
             ProcessoSeletivo processo = new ProcessoSeletivo();
 
             using (StreamReader reader = new StreamReader(caminhoEntrada))
